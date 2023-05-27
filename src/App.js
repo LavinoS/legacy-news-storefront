@@ -1,11 +1,12 @@
 import React from 'react';
 
-function App() {
-  return (
-    <div style={{ width: '300px', height: '300px', background: '#FF0' }}>
-      ceva
-    </div>
-  );
-}
+import ThemeProvider from './providers/ThemeProvider';
+import NewsContainer from './shared/containers/newsContainer';
 
-export default App;
+export default () => {
+  return (
+    <ThemeProvider>
+      <NewsContainer />
+    </ThemeProvider>
+  );
+};
