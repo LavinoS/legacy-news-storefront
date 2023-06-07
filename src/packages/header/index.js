@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { IoIosArrowDown } from 'react-icons/io';
+import { useNavigate } from 'react-router';
 
 import { DarkOverlay, LegacyDiv, LegacyLink } from '../../components';
 import { logoUrl } from './assets';
@@ -13,21 +14,10 @@ const StyledHeader = styled.header`
 `;
 
 export default (props) => {
-  const { receiveArticlesMethod } = props;
+  const { articles } = props;
 
   const [isSubmenuOpen, setSubmenuOpen] = useState(false);
-  const [articles, setArticles] = useState([]);
-
-  useEffect(() => {
-    receiveArticlesMethod({
-      params: { limit: 100 },
-      callback: (result) => {
-        if (result.success) {
-          setArticles(result.data);
-        }
-      },
-    });
-  }, []);
+  const navigator = useNavigate();
 
   const handleSubmenuHover = () => {
     setSubmenuOpen((prevState) => !prevState);
@@ -44,12 +34,15 @@ export default (props) => {
           />
         </LegacyDiv>
         <LegacyDiv styleProps={headerLinksStyleProps}>
-          <LegacyLink text="Home" />
-          <LegacyLink text="Sport" />
-          <LegacyLink text="Political" />
-          <LegacyLink text="Social" />
-          <LegacyLink text="External" />
-          <LegacyLink text="Economic" />
+          <LegacyLink text="Home" onClick={() => navigator('/')} />
+          <LegacyLink text="Sport" onClick={() => navigator('/sport')} />
+          <LegacyLink text="Politics" onClick={() => navigator('/politics')} />
+          <LegacyLink text="Social" onClick={() => navigator('/social')} />
+          <LegacyLink text="External" onClick={() => navigator('/external')} />
+          <LegacyLink
+            text="Economics"
+            onClick={() => navigator('/economics')}
+          />
           <LegacyDiv
             onMouseEnter={handleSubmenuHover}
             onMouseLeave={handleSubmenuHover}

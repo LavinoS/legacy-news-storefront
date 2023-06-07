@@ -1,11 +1,12 @@
 import { clientApi as api } from '../../client/clientApi';
+import { receiveArticles } from './siteMutations';
 
 export const receiveArticlesAction =
-  ({ params, callback }) =>
-  async () => {
+  ({ params }) =>
+  async (dispatch) => {
     const { json, status } = await api.articles.receive(params);
 
-    if (callback && typeof callback === 'function' && status === 200) {
-      callback(json);
+    if (status === 200) {
+      dispatch(receiveArticles(json));
     }
   };

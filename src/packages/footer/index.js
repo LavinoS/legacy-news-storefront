@@ -2,8 +2,8 @@ import React from 'react';
 import { LegacyDiv, LegacyParagraph } from '../../components';
 import styled from 'styled-components';
 import { logoUrl } from '../header/assets';
-import { BsFacebook, BsTwitter, BsInstagram } from 'react-icons/bs';
-import { FaGooglePlusG, FaPinterest } from 'react-icons/fa';
+import { BsFacebook, BsTwitter, BsInstagram, BsLinkedin } from 'react-icons/bs';
+import { FaPinterest } from 'react-icons/fa';
 
 const StyledFooter = styled.footer`
   ${(props) => props.theme.toRawCss(props.styleProps || {})};
@@ -56,6 +56,7 @@ export default () => {
         <LegacyDiv
           styleProps={{
             ALL_DEVICES: {
+              marginBottom: '16px',
               '& > svg': {
                 width: '25px',
                 height: '25px',
@@ -68,9 +69,10 @@ export default () => {
           <BsFacebook />
           <BsTwitter />
           <BsInstagram />
-          <FaGooglePlusG />
+          <BsLinkedin />
           <FaPinterest />
         </LegacyDiv>
+        <LegacyParagraph text="© 2023 Legacy News. All rights reserved." />
       </LegacyDiv>
     </StyledFooter>
   );

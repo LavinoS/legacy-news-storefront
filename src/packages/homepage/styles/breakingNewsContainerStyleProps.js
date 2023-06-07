@@ -1,0 +1,90 @@
+export default {
+  ALL_DEVICES: {
+    display: 'grid',
+    gridTemplateColumns: 'repeat(6, 1fr)',
+    gridTemplateRows: 'repeat(2, 1fr)',
+    gridGap: '10px',
+    height: '500px',
+    width: '100%',
+    overflow: 'hidden',
+    marginTop: '40px',
+    background: 'transparent',
+    '& > div:nth-child(1)': {
+      gridArea: '1 / 1 / 3 / 3',
+      width: '100%',
+      height: '100%',
+    },
+    '& > div:nth-child(2)': {
+      gridArea: '1 / 5 / 3 / 7',
+      width: '100%',
+      height: '100%',
+    },
+    '& > div:nth-child(3)': {
+      gridArea: '1 / 3 / 2 / 5',
+      width: '100%',
+      height: '100%',
+    },
+    '& > div:nth-child(4)': {
+      gridArea: '2 / 3 / 3 / 4',
+      width: '100%',
+      height: '100%',
+    },
+    '& > div:nth-child(5)': {
+      gridArea: '2 / 4 / 3 / 5',
+      width: '100%',
+      height: '100%',
+    },
+    '& > div': { position: 'relative' },
+    '& > div > div': {
+      transition: 'all .3s ease-in-out',
+      background:
+        'linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.1) 30%)',
+      position: 'absolute',
+      width: '100%',
+      height: '100%',
+      zIndex: '3',
+      alignItems: 'end',
+      '& > div': {
+        flexDirection: 'column',
+        alignItems: 'start',
+        color: '#FFF',
+        padding: '16px',
+        '& > span': {
+          background: '#000',
+          fontSize: '12px',
+          fontWeight: '500',
+          padding: '2px 16px',
+          borderRadius: '3px',
+          textTransform: 'uppercase',
+          marginBottom: '12px',
+        },
+        '& > a': {
+          textDecoration: 'none',
+          fontSize: '24px',
+          fontWeight: '700',
+          marginBottom: '12px',
+          color: '#FFF',
+          '-webkit-box-orient': 'vertical',
+          '-webkit-line-clamp': '2',
+          display: '-webkit-box',
+          overflow: 'hidden',
+          '&:visited': {
+            color: '#FFF',
+          },
+          '&:hover': {
+            textDecoration: 'underline',
+          },
+        },
+        '& > p': {
+          fontSize: '12px',
+          fontWeight: '500',
+        },
+      },
+    },
+    '& > div > img': {
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    },
+  },
+};
