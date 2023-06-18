@@ -7,6 +7,14 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
+  resolve: {
+    fallback: {
+      buffer: false,
+      zlib: false,
+      stream: false,
+      fs: false,
+    },
+  },
   module: {
     rules: [
       {

@@ -10,3 +10,7 @@ export const receiveArticlesAction =
       dispatch(receiveArticles(json));
     }
   };
+
+export const makeNewViewAction = () => async () => {
+  await api.views.createView();
+};

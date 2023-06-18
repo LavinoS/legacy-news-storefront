@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import newsContainer from '../../containers/newsContainer';
 import dispatchPropsBuilder from '../helpers/dispatchPropsBuilder';
 
-import { receiveArticlesMethod } from '../store/site/siteDispatchProps';
+import {
+  makeNewViewMethod,
+  receiveArticlesMethod,
+} from '../store/site/siteDispatchProps';
 
 const mapStateToProps = (state) => ({
   state: state.app,
@@ -11,6 +14,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = dispatchPropsBuilder({
   receiveArticlesMethod,
+  makeNewViewMethod,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(newsContainer);

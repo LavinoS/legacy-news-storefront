@@ -9,7 +9,7 @@ module.exports = {
     'plugin:promise/recommended',
     'plugin:prettier/recommended',
   ],
-  plugins: ['@typescript-eslint', 'jsx-a11y'],
+  plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,

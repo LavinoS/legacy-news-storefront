@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { IoIosArrowDown } from 'react-icons/io';
 import { useNavigate } from 'react-router';
 
-import { DarkOverlay, LegacyDiv, LegacyLink } from '../../components';
+import { LegacyDiv, LegacyLink } from '../../components';
 import { logoUrl } from './assets';
-import BlogSubmenu from './components/BlogSubmenu';
 import headerStyleProps from './styles/headerStyleProps';
 import headerLinksStyleProps from './styles/headerLinksStyleProps';
 
@@ -13,14 +11,12 @@ const StyledHeader = styled.header`
   ${(props) => props.theme.toRawCss(props.styleProps || {})};
 `;
 
-export default (props) => {
-  const { articles } = props;
-
-  const [isSubmenuOpen, setSubmenuOpen] = useState(false);
+export default () => {
   const navigator = useNavigate();
 
-  const handleSubmenuHover = () => {
-    setSubmenuOpen((prevState) => !prevState);
+  const handleChangePage = (url) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    navigator(url);
   };
 
   return (
@@ -34,26 +30,26 @@ export default (props) => {
           />
         </LegacyDiv>
         <LegacyDiv styleProps={headerLinksStyleProps}>
-          <LegacyLink text="Home" onClick={() => navigator('/')} />
-          <LegacyLink text="Sport" onClick={() => navigator('/sport')} />
-          <LegacyLink text="Politics" onClick={() => navigator('/politics')} />
-          <LegacyLink text="Social" onClick={() => navigator('/social')} />
-          <LegacyLink text="External" onClick={() => navigator('/external')} />
+          <LegacyLink text="Home" onClick={() => handleChangePage('/')} />
+          <LegacyLink text="Sport" onClick={() => handleChangePage('/sport')} />
+          <LegacyLink
+            text="Politics"
+            onClick={() => handleChangePage('/politics')}
+          />
+          <LegacyLink
+            text="Social"
+            onClick={() => handleChangePage('/social')}
+          />
+          <LegacyLink
+            text="External"
+            onClick={() => handleChangePage('/external')}
+          />
           <LegacyLink
             text="Economics"
-            onClick={() => navigator('/economics')}
+            onClick={() => handleChangePage('/economics')}
           />
-          <LegacyDiv
-            onMouseEnter={handleSubmenuHover}
-            onMouseLeave={handleSubmenuHover}
-          >
-            <LegacyLink text="Blog" />
-            <IoIosArrowDown />
-            {isSubmenuOpen && <BlogSubmenu articles={articles} />}
-          </LegacyDiv>
         </LegacyDiv>
       </StyledHeader>
-      {isSubmenuOpen && <DarkOverlay />}
     </>
   );
 };

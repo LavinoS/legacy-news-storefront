@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router';
 
 import {
   CustomSpan,
@@ -11,6 +12,7 @@ import filterArticlesToShow from '../../../helpers/filterArticlesToShow';
 
 export default ({ articles }) => {
   const categories = ['sport', 'politics', 'social', 'external', 'economics'];
+  const navigator = useNavigate();
 
   const newestArticlesRender = (category) => {
     const [article] = filterArticlesToShow(articles, category, 0, 1);
@@ -43,7 +45,7 @@ export default ({ articles }) => {
                 <CustomSpan>{category}</CustomSpan>
                 <LegacyLink
                   text={title}
-                  redirectPath={`/${category}/${slug}`}
+                  onClick={() => navigator(`/${category}/${slug}`)}
                 />
                 <LegacyParagraph
                   text={`${publishDate} / BY ${author.toUpperCase()}`}

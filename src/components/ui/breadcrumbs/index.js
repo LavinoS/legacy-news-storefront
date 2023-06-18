@@ -1,25 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useLocation } from 'react-router';
-import { MdOutlineKeyboardArrowRight } from 'react-icons/md';
+import { useLocation, useNavigate } from 'react-router';
 
 import { LegacyLink } from '../../index';
 import breadcrumbsLinksStyleProps from './styles/breadcrumbsLinksStyleProps';
 import mergeStyles from '../../../helpers/mergeStyles';
 
 const StyledBreadcrumbsContainer = styled.nav`
-  width: 100%;
+  width: fit-content;
   display: flex;
   justify-content: center;
-  padding: 16px 0;
-  background: #15182c;
 
   ${(props) => props.theme.toRawCss(props.styleProps)}
 `;
 const StyledBreadcrumbs = styled.ol`
   list-style: none;
   width: 100%;
-  max-width: 1100px;
   display: flex;
 
   ${(props) => props.theme.toRawCss(props.styleProps)}
@@ -29,6 +25,13 @@ const StyledBreadcrumbsItem = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  &:not(:first-child):before {
+    display: inline-block;
+    margin: 0 5px;
+    color: #635c72;
+    content: '/';
+  }
 
   ${(props) => props.theme.toRawCss(props.styleProps)}
 `;
@@ -43,6 +46,7 @@ export default (props) => {
 
   const [crumbs, setCrumbs] = useState([]);
   const { pathname } = useLocation();
+  const navigator = useNavigate();
 
   const pathSegments = pathname.split('/').filter((segment) => segment !== '');
 
@@ -53,7 +57,7 @@ export default (props) => {
           ...prevSegment,
           {
             url: `/${pathSegments.slice(0, currentIndex + 1).join('/')}`,
-            text: currentSegment.replace('-', ' '),
+            text: currentSegment.replaceAll('-', ' '),
           },
         ];
       }, []),
@@ -74,7 +78,7 @@ export default (props) => {
         <StyledBreadcrumbsItem styleProps={breadcrumbsItemStyleProps}>
           <LegacyLink
             text="home"
-            redirectPath="/"
+            onClick={() => navigator('/')}
             styleProps={mergedLinksStyle}
           />
         </StyledBreadcrumbsItem>
@@ -84,12 +88,8 @@ export default (props) => {
               key={index}
               styleProps={breadcrumbsItemStyleProps}
             >
-              <MdOutlineKeyboardArrowRight
-                size="25px"
-                style={{ color: '#FFF', margin: '0 5px' }}
-              />
               <LegacyLink
-                redirectPath={url}
+                onClick={() => navigator(url)}
                 text={text}
                 styleProps={mergedLinksStyle}
               />
